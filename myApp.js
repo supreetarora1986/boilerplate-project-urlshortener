@@ -3,6 +3,7 @@ var urlp = require('url');
 var urlArray = [];
 
 var createShortUrl = function(url,res){
+    if(url){
     hostname = urlp.parse(url).hostname;
     dns.lookup(hostname, (err,add,family)=>{
         if(err){
@@ -20,6 +21,9 @@ var createShortUrl = function(url,res){
         res.json(shortUrlObj);
         }
     })
+    }else{
+        res.json({error: 'invalid url'});
+    }
 }
 
 var redirectShortUrl = function(shorturl,res){
