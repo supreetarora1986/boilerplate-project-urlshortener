@@ -1,10 +1,10 @@
 const dns = require('dns');
-const validUrl =  require('valid-url');
+const validUrl =  require('is-valid-http-url');
 var urlp = require('url');
 var urlArray = [];
 
 var createShortUrl = function(url,res){
-    if(validUrl.isUri(url)){
+    if(validUrl(url)){
     console.log("url " + url);
     hostname = urlp.parse(url).hostname;
     dns.lookup(hostname, (err,add,family)=>{
