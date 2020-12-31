@@ -22,4 +22,15 @@ var createShortUrl = function(url,res){
     })
 }
 
+var redirectShortUrl = function(shorturl,res){
+console.log("entered redirect" + shorturl);
+    valuesFound = urlArray.filter(ob => ob.short_url == parseInt(shorturl));
+    if(valuesFound && valuesFound.length > 0){
+        res.redirect(valuesFound[0].original_url);
+    }else{
+        res.json({error: 'invalid url'});
+    }
+}
+
 exports.createShortUrl = createShortUrl;
+exports.redirectShortUrl = redirectShortUrl;
